@@ -207,6 +207,84 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- 교통 수단 선택 카드 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/transportationCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/blue_light"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(필수)교통 수단 선택"
+                        android:textColor="@color/gray_text"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/carOption"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="차량"
+                            android:textColor="@color/gray_text"
+                            android:textSize="16sp"
+                            android:padding="8dp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/trainOption"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="기차"
+                            android:textColor="@color/gray_text"
+                            android:textSize="16sp"
+                            android:padding="8dp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/busOption"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="버스"
+                            android:textColor="@color/gray_text"
+                            android:textSize="16sp"
+                            android:padding="8dp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/otherOption"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="기타"
+                            android:textColor="@color/gray_text"
+                            android:textSize="16sp"
+                            android:padding="8dp"
+                            android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <!-- 메모 작성 카드 -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/memoCard"

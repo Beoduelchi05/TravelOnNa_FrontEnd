@@ -207,6 +207,27 @@ class LoginActivity : AppCompatActivity() {
                     Log.d(TAG, "Expires In: ${tokenResponse?.expiresIn}")
                     Log.d(TAG, "Full token response: $tokenResponse")
                     Log.d(TAG, "=====================")
+                    
+                    // 토큰 저장
+                    if (tokenResponse != null) {
+                        // TokenManager를 통해 토큰 저장
+                        try {
+                            com.example.travelonna.util.TokenManager.saveTokens(
+                                this@LoginActivity,
+                                tokenResponse.accessToken,
+                                tokenResponse.refreshToken
+                            )
+                            Log.d(TAG, "토큰이 성공적으로 저장되었습니다.")
+                            
+                            // 저장된 토큰 확인
+                            val savedToken = com.example.travelonna.util.TokenManager.getAccessToken(this@LoginActivity)
+                            Log.d(TAG, "저장된 토큰: ${savedToken?.take(10)}...")
+                        } catch (e: Exception) {
+                            Log.e(TAG, "토큰 저장 중 오류 발생: ${e.message}")
+                            e.printStackTrace()
+                        }
+                    }
+                    
                     Toast.makeText(this@LoginActivity, "로그인 성공!", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {

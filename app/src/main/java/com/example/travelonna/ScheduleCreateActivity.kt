@@ -20,8 +20,14 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.cardview.widget.CardView
+import com.example.travelonna.api.PlanRequest
+import com.example.travelonna.api.PlanResponse
+import com.example.travelonna.api.RetrofitClient
 import com.example.travelonna.data.LocationData
 import com.example.travelonna.view.CustomToggleButton
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -45,7 +51,15 @@ class ScheduleCreateActivity : AppCompatActivity() {
     private lateinit var nameCard: CardView
     private lateinit var dateCard: CardView
     private lateinit var locationCard: CardView
+    private lateinit var transportationCard: CardView
     private lateinit var memoCard: CardView
+    
+    // 교통 수단 관련 변수
+    private lateinit var carOption: TextView
+    private lateinit var trainOption: TextView
+    private lateinit var busOption: TextView
+    private lateinit var otherOption: TextView
+    private var transportationType: String = "car" // 기본값은 차량으로 설정
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,11 +75,18 @@ class ScheduleCreateActivity : AppCompatActivity() {
         memoInput = findViewById(R.id.memoInput)
         createScheduleButton = findViewById(R.id.createScheduleButton)
 
+        // 교통 수단 옵션 초기화
+        carOption = findViewById(R.id.carOption)
+        trainOption = findViewById(R.id.trainOption)
+        busOption = findViewById(R.id.busOption)
+        otherOption = findViewById(R.id.otherOption)
+
         // 카드뷰 초기화
         typeCard = findViewById(R.id.typeCard)
         nameCard = findViewById(R.id.nameCard)
         dateCard = findViewById(R.id.dateCard)
         locationCard = findViewById(R.id.locationCard)
+        transportationCard = findViewById(R.id.transportationCard)
         memoCard = findViewById(R.id.memoCard)
         
         // 초기 UI 설정 - 처음에는 일정 유형과 일정 이름 모두 바로 표시
@@ -96,6 +117,23 @@ class ScheduleCreateActivity : AppCompatActivity() {
         // 위치 선택 리스너 수정
         locationSelectButton.setOnClickListener {
             showLocationSelector()
+        }
+        
+        // 교통 수단 옵션 클릭 리스너 설정
+        carOption.setOnClickListener {
+            updateTransportationSelection("car")
+        }
+        
+        trainOption.setOnClickListener {
+            updateTransportationSelection("train")
+        }
+        
+        busOption.setOnClickListener {
+            updateTransportationSelection("bus")
+        }
+        
+        otherOption.setOnClickListener {
+            updateTransportationSelection("other")
         }
         
         // 일정 생성 버튼 리스너
@@ -181,26 +219,89 @@ class ScheduleCreateActivity : AppCompatActivity() {
             Toast.makeText(this, "위치를 선택해주세요.", Toast.LENGTH_SHORT).show()
             return false
         }
+        
+        // 선택된 교통 수단이 하나도 없을 경우 (텍스트 색상이 모두 회색인 경우)
+        if (carOption.currentTextColor == ContextCompat.getColor(this, R.color.gray_text) &&
+            trainOption.currentTextColor == ContextCompat.getColor(this, R.color.gray_text) &&
+            busOption.currentTextColor == ContextCompat.getColor(this, R.color.gray_text) &&
+            otherOption.currentTextColor == ContextCompat.getColor(this, R.color.gray_text)) {
+            Toast.makeText(this, "교통 수단을 선택해주세요.", Toast.LENGTH_SHORT).show()
+            return false
+        }
 
         return true
     }
 
     private fun createSchedule() {
-        // 일정 생성 로직 구현
-        // API 호출 또는 로컬 DB 저장 등의 작업 수행
-        Toast.makeText(this, "일정이 생성되었습니다.", Toast.LENGTH_SHORT).show()
+        // 로딩 다이얼로그 표시
+        val loadingDialog = AlertDialog.Builder(this)
+            .setMessage("일정을 생성 중입니다...")
+            .setCancelable(false)
+            .create()
+        loadingDialog.show()
+
+        // 날짜 포맷 변환 (yyyy년 MM월 dd일 -> yyyy-MM-dd)
+        val apiDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val startDateStr = apiDateFormat.format(startDateCalendar.time)
+        val endDateStr = apiDateFormat.format(endDateCalendar.time)
         
-        // 일정 상세 화면으로 이동
-        val intent = Intent(this, ScheduleDetailActivity::class.java).apply {
-            putExtra("START_DATE", startDateCalendar.timeInMillis)
-            putExtra("END_DATE", endDateCalendar.timeInMillis)
-            putExtra("SCHEDULE_NAME", scheduleNameInput.text.toString())
-            putExtra("LOCATION", locationSelectButton.text.toString())
-            putExtra("MEMO", memoInput.text.toString())
-            putExtra("IS_GROUP", typeToggle.isChecked())
-        }
-        startActivity(intent)
-        finish()
+        // API 요청 생성
+        val planRequest = PlanRequest(
+            title = scheduleNameInput.text.toString(),
+            startDate = startDateStr,
+            endDate = endDateStr,
+            location = locationSelectButton.text.toString(),
+            transportInfo = transportationType,
+            isPublic = true, // 무조건 true로 설정
+            memo = if (memoInput.text.toString().isNotEmpty()) memoInput.text.toString() else null
+        )
+        
+        // API 호출
+        RetrofitClient.getPlanApi(this).createPlan(planRequest).enqueue(
+            object : Callback<PlanResponse> {
+                override fun onResponse(
+                    call: Call<PlanResponse>,
+                    response: Response<PlanResponse>
+                ) {
+                    loadingDialog.dismiss()
+                    
+                    if (response.isSuccessful && response.body()?.success == true) {
+                        val planData = response.body()?.data
+                        Toast.makeText(this@ScheduleCreateActivity, "일정이 생성되었습니다.", Toast.LENGTH_SHORT).show()
+                        
+                        // 일정 상세 화면으로 이동
+                        val intent = Intent(this@ScheduleCreateActivity, ScheduleDetailActivity::class.java).apply {
+                            putExtra("PLAN_ID", planData?.planId)
+                            putExtra("START_DATE", startDateCalendar.timeInMillis)
+                            putExtra("END_DATE", endDateCalendar.timeInMillis)
+                            putExtra("SCHEDULE_NAME", scheduleNameInput.text.toString())
+                            putExtra("LOCATION", locationSelectButton.text.toString())
+                            putExtra("TRANSPORTATION_TYPE", transportationType)
+                            putExtra("MEMO", memoInput.text.toString())
+                            putExtra("IS_GROUP", typeToggle.isChecked())
+                        }
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        // 에러 처리
+                        val errorMessage = response.body()?.message ?: "일정 생성에 실패했습니다."
+                        Toast.makeText(this@ScheduleCreateActivity, errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                }
+                
+                override fun onFailure(
+                    call: Call<PlanResponse>,
+                    t: Throwable
+                ) {
+                    loadingDialog.dismiss()
+                    Toast.makeText(
+                        this@ScheduleCreateActivity,
+                        "네트워크 오류: ${t.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        )
     }
 
     // 토글 상태에 따라 텍스트 색상 업데이트
@@ -283,9 +384,8 @@ class ScheduleCreateActivity : AppCompatActivity() {
             
             dialog.dismiss()
             
-            // 위치 선택 후 메모 카드와 생성 버튼 함께 표시
-            showNextStep(memoCard)
-            showNextStep(createScheduleButton)
+            // 위치 선택 후 교통수단 선택 카드 표시
+            showNextStep(transportationCard)
         }
         
         // 다이얼로그 표시
@@ -299,6 +399,7 @@ class ScheduleCreateActivity : AppCompatActivity() {
         nameCard.visibility = View.VISIBLE  // 지연 없이 바로 표시
         dateCard.visibility = View.GONE
         locationCard.visibility = View.GONE
+        transportationCard.visibility = View.GONE
         memoCard.visibility = View.GONE
         createScheduleButton.visibility = View.GONE
     }
@@ -306,5 +407,27 @@ class ScheduleCreateActivity : AppCompatActivity() {
     // 다음 단계 표시 메서드
     private fun showNextStep(cardView: View) {
         cardView.visibility = View.VISIBLE
+    }
+
+    private fun updateTransportationSelection(type: String) {
+        transportationType = type
+        
+        // 모든 옵션 색상을 회색으로 초기화
+        carOption.setTextColor(ContextCompat.getColor(this, R.color.gray_text))
+        trainOption.setTextColor(ContextCompat.getColor(this, R.color.gray_text))
+        busOption.setTextColor(ContextCompat.getColor(this, R.color.gray_text))
+        otherOption.setTextColor(ContextCompat.getColor(this, R.color.gray_text))
+        
+        // 선택된 옵션만 파란색으로 변경
+        when (type) {
+            "car" -> carOption.setTextColor(ContextCompat.getColor(this, R.color.blue_primary))
+            "train" -> trainOption.setTextColor(ContextCompat.getColor(this, R.color.blue_primary))
+            "bus" -> busOption.setTextColor(ContextCompat.getColor(this, R.color.blue_primary))
+            "other" -> otherOption.setTextColor(ContextCompat.getColor(this, R.color.blue_primary))
+        }
+        
+        // 교통 수단 선택 후 메모 카드 표시 및 생성 버튼 활성화
+        showNextStep(memoCard)
+        showNextStep(createScheduleButton)
     }
 } 

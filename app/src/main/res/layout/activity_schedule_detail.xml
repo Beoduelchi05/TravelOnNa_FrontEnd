@@ -37,53 +37,25 @@
         android:background="@color/gray_light"
         app:layout_constraintTop_toBottomOf="@id/tabScrollView" />
 
-    <!-- 버튼 영역 -->
-    <LinearLayout
-        android:id="@+id/buttonLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        android:paddingVertical="8dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tabDivider">
-
-        <!-- 장소 추가하기 버튼 -->
-        <Button
-            android:id="@+id/addNewPlaceButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/blue_button_background"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="장소 추가하기"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <!-- 완료 버튼 -->
-        <Button
-            android:id="@+id/confirmButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/blue_button_background"
-            android:gravity="center"
-            android:paddingHorizontal="20dp"
-            android:text="완료"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
     <!-- ViewPager2로 일정 내용 표시 -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonLayout" />
+        app:layout_constraintBottom_toTopOf="@id/confirmButton"
+        app:layout_constraintTop_toBottomOf="@id/tabDivider" />
+
+    <!-- 하단 완료 버튼 -->
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#5B86FF"
+        android:gravity="center"
+        android:text="완료"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout> 
