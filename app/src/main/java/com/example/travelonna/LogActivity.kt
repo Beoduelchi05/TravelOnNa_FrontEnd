@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.Spinner
 import android.widget.ImageView
+import com.example.travelonna.model.TravelLog
+import com.example.travelonna.model.TravelPlace
 
 class LogActivity : AppCompatActivity() {
 
@@ -120,9 +122,12 @@ class LogActivity : AppCompatActivity() {
                 "2024.03.15 - 2024.03.18", 
                 "그룹",
                 listOf(
-                    TravelPlace("성산일출봉", "제주특별자치도 서귀포시 성산읍", "09:00 - 11:00"),
-                    TravelPlace("우도", "제주특별자치도 제주시 우도면", "12:00 - 15:00"),
-                    TravelPlace("만장굴", "제주특별자치도 제주시 구좌읍", "16:00 - 18:00")
+                    TravelPlace("성산일출봉", "제주특별자치도 서귀포시 성산읍", "09:00 - 11:00", 1), // 1일차
+                    TravelPlace("우도", "제주특별자치도 제주시 우도면", "12:00 - 15:00", 1), // 1일차
+                    TravelPlace("만장굴", "제주특별자치도 제주시 구좌읍", "16:00 - 18:00", 2), // 2일차
+                    TravelPlace("한라산", "제주특별자치도 제주시 오등동", "09:00 - 14:00", 2), // 2일차
+                    TravelPlace("천지연폭포", "제주특별자치도 서귀포시", "15:00 - 17:00", 3), // 3일차
+                    TravelPlace("제주민속촌", "제주특별자치도 서귀포시", "10:00 - 12:00", 4) // 4일차
                 )
             ),
             TravelLog(
@@ -130,8 +135,11 @@ class LogActivity : AppCompatActivity() {
                 "2024.02.20 - 2024.02.22", 
                 "개인",
                 listOf(
-                    TravelPlace("해운대", "부산광역시 해운대구", "10:00 - 13:00"),
-                    TravelPlace("감천문화마을", "부산광역시 사하구", "14:00 - 16:00")
+                    TravelPlace("해운대", "부산광역시 해운대구", "10:00 - 13:00", 1), // 1일차
+                    TravelPlace("광안리", "부산광역시 수영구", "15:00 - 18:00", 1), // 1일차
+                    TravelPlace("감천문화마을", "부산광역시 사하구", "09:00 - 12:00", 2), // 2일차
+                    TravelPlace("태종대", "부산광역시 영도구", "14:00 - 16:00", 2), // 2일차
+                    TravelPlace("자갈치시장", "부산광역시 중구", "10:00 - 13:00", 3) // 3일차
                 )
             ),
             TravelLog(
@@ -139,9 +147,10 @@ class LogActivity : AppCompatActivity() {
                 "2023.01.10 - 2023.01.12", 
                 "그룹",
                 listOf(
-                    TravelPlace("양양 서핑", "강원도 양양군", "09:00 - 12:00"),
-                    TravelPlace("속초 해변", "강원도 속초시", "13:00 - 15:00"),
-                    TravelPlace("설악산", "강원도 속초시", "16:00 - 18:00")
+                    TravelPlace("양양 서핑", "강원도 양양군", "09:00 - 12:00", 1), // 1일차
+                    TravelPlace("속초 해변", "강원도 속초시", "13:00 - 15:00", 1), // 1일차
+                    TravelPlace("설악산", "강원도 속초시", "16:00 - 18:00", 2), // 2일차
+                    TravelPlace("오션월드", "강원도 홍천군", "10:00 - 15:00", 3) // 3일차
                 )
             ),
             TravelLog(
@@ -149,8 +158,12 @@ class LogActivity : AppCompatActivity() {
                 "2022.08.10 - 2022.08.12", 
                 "개인",
                 listOf(
-                    TravelPlace("경복궁", "서울특별시 종로구", "09:00 - 12:00"),
-                    TravelPlace("남산타워", "서울특별시 용산구", "14:00 - 16:00")
+                    TravelPlace("경복궁", "서울특별시 종로구", "09:00 - 12:00", 1), // 1일차
+                    TravelPlace("남산타워", "서울특별시 용산구", "14:00 - 16:00", 1), // 1일차
+                    TravelPlace("홍대 거리", "서울특별시 마포구", "18:00 - 21:00", 1), // 1일차
+                    TravelPlace("롯데월드", "서울특별시 송파구", "10:00 - 16:00", 2), // 2일차
+                    TravelPlace("한강공원", "서울특별시 영등포구", "17:00 - 19:00", 2), // 2일차
+                    TravelPlace("명동 쇼핑", "서울특별시 중구", "11:00 - 15:00", 3) // 3일차
                 )
             )
         )
@@ -201,9 +214,12 @@ class LogActivity : AppCompatActivity() {
                 "2024.03.15 - 2024.03.18", 
                 "그룹",
                 listOf(
-                    TravelPlace("성산일출봉", "제주특별자치도 서귀포시 성산읍", "09:00 - 11:00"),
-                    TravelPlace("우도", "제주특별자치도 제주시 우도면", "12:00 - 15:00"),
-                    TravelPlace("만장굴", "제주특별자치도 제주시 구좌읍", "16:00 - 18:00")
+                    TravelPlace("성산일출봉", "제주특별자치도 서귀포시 성산읍", "09:00 - 11:00", 1),
+                    TravelPlace("우도", "제주특별자치도 제주시 우도면", "12:00 - 15:00", 1),
+                    TravelPlace("만장굴", "제주특별자치도 제주시 구좌읍", "16:00 - 18:00", 2),
+                    TravelPlace("한라산", "제주특별자치도 제주시 오등동", "09:00 - 14:00", 2),
+                    TravelPlace("천지연폭포", "제주특별자치도 서귀포시", "15:00 - 17:00", 3),
+                    TravelPlace("제주민속촌", "제주특별자치도 서귀포시", "10:00 - 12:00", 4)
                 )
             ),
             TravelLog(
@@ -211,8 +227,11 @@ class LogActivity : AppCompatActivity() {
                 "2024.02.20 - 2024.02.22", 
                 "개인",
                 listOf(
-                    TravelPlace("해운대", "부산광역시 해운대구", "10:00 - 13:00"),
-                    TravelPlace("감천문화마을", "부산광역시 사하구", "14:00 - 16:00")
+                    TravelPlace("해운대", "부산광역시 해운대구", "10:00 - 13:00", 1),
+                    TravelPlace("광안리", "부산광역시 수영구", "15:00 - 18:00", 1),
+                    TravelPlace("감천문화마을", "부산광역시 사하구", "09:00 - 12:00", 2),
+                    TravelPlace("태종대", "부산광역시 영도구", "14:00 - 16:00", 2),
+                    TravelPlace("자갈치시장", "부산광역시 중구", "10:00 - 13:00", 3)
                 )
             ),
             TravelLog(
@@ -220,9 +239,10 @@ class LogActivity : AppCompatActivity() {
                 "2023.01.10 - 2023.01.12", 
                 "그룹",
                 listOf(
-                    TravelPlace("양양 서핑", "강원도 양양군", "09:00 - 12:00"),
-                    TravelPlace("속초 해변", "강원도 속초시", "13:00 - 15:00"),
-                    TravelPlace("설악산", "강원도 속초시", "16:00 - 18:00")
+                    TravelPlace("양양 서핑", "강원도 양양군", "09:00 - 12:00", 1),
+                    TravelPlace("속초 해변", "강원도 속초시", "13:00 - 15:00", 1),
+                    TravelPlace("설악산", "강원도 속초시", "16:00 - 18:00", 2),
+                    TravelPlace("오션월드", "강원도 홍천군", "10:00 - 15:00", 3)
                 )
             ),
             TravelLog(
@@ -230,8 +250,12 @@ class LogActivity : AppCompatActivity() {
                 "2022.08.10 - 2022.08.12", 
                 "개인",
                 listOf(
-                    TravelPlace("경복궁", "서울특별시 종로구", "09:00 - 12:00"),
-                    TravelPlace("남산타워", "서울특별시 용산구", "14:00 - 16:00")
+                    TravelPlace("경복궁", "서울특별시 종로구", "09:00 - 12:00", 1),
+                    TravelPlace("남산타워", "서울특별시 용산구", "14:00 - 16:00", 1),
+                    TravelPlace("홍대 거리", "서울특별시 마포구", "18:00 - 21:00", 1),
+                    TravelPlace("롯데월드", "서울특별시 송파구", "10:00 - 16:00", 2),
+                    TravelPlace("한강공원", "서울특별시 영등포구", "17:00 - 19:00", 2),
+                    TravelPlace("명동 쇼핑", "서울특별시 중구", "11:00 - 15:00", 3)
                 )
             )
         )

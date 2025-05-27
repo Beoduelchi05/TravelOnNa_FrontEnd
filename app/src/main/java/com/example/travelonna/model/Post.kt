@@ -4,7 +4,10 @@ data class Post(
     val id: Long,
     val imageResource: Int,
     val userName: String,
-    val isFollowing: Boolean,
+    var isFollowing: Boolean = false,
     val description: String,
-    val date: String
+    val date: String,
+    var isLiked: Boolean = false,
+    var likeCount: Int = 0,
+    var commentCount: Int = 0
 ) 

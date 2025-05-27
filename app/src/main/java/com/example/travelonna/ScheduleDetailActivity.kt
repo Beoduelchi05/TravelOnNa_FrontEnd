@@ -41,6 +41,7 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import android.widget.ImageButton
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.widget.Switch
 
 class ScheduleDetailActivity : AppCompatActivity() {
 
@@ -49,6 +50,11 @@ class ScheduleDetailActivity : AppCompatActivity() {
     private lateinit var addNewPlaceButton: TextView
     private lateinit var confirmButton: TextView
     private lateinit var shareButton: ImageButton
+    private lateinit var backButton: ImageView
+    private lateinit var followText: TextView
+    private lateinit var followToggle: Switch
+    private lateinit var dayOneTab: LinearLayout
+    private lateinit var dayTwoTab: LinearLayout
     
     private val startDateCalendar = Calendar.getInstance()
     private val endDateCalendar = Calendar.getInstance()
@@ -57,6 +63,10 @@ class ScheduleDetailActivity : AppCompatActivity() {
     
     // 액티비티 레벨에서 Places 클라이언트를 공유
     private lateinit var placesClient: PlacesClient
+
+    companion object {
+        const val EXTRA_POST_ID = "extra_post_id"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +83,11 @@ class ScheduleDetailActivity : AppCompatActivity() {
         addNewPlaceButton = findViewById(R.id.addNewPlaceButton)
         confirmButton = findViewById(R.id.confirmButton)
         shareButton = findViewById(R.id.shareButton)
+        backButton = findViewById(R.id.backButton)
+        followText = findViewById(R.id.followText)
+        followToggle = findViewById(R.id.followToggle)
+        dayOneTab = findViewById(R.id.dayOneTab)
+        dayTwoTab = findViewById(R.id.dayTwoTab)
         
         // 인텐트에서 날짜 데이터 가져오기
         val startDate = intent.getLongExtra("START_DATE", System.currentTimeMillis())
@@ -101,7 +116,6 @@ class ScheduleDetailActivity : AppCompatActivity() {
         dateRangeText.text = "$startDateStr - $endDateStr"
         
         // 뒤로가기 버튼 설정
-        val backButton = findViewById<ImageView>(R.id.backButton)
         backButton.setOnClickListener {
             finish()
         }
@@ -139,6 +153,9 @@ class ScheduleDetailActivity : AppCompatActivity() {
                 Toast.makeText(this, "오류 발생: ${e.message}", Toast.LENGTH_SHORT).show()
             e.printStackTrace()
         }
+        
+        // 팔로우 토글 설정
+        setupFollowToggle()
     }
     
         // 완료 버튼 리스너
@@ -945,6 +962,12 @@ class ScheduleDetailActivity : AppCompatActivity() {
                     shareButton.visibility = View.GONE
                 }
             })
+    }
+
+    // 팔로우 토글 설정
+    private fun setupFollowToggle() {
+        // 팔로우 토글 설정 로직을 구현해야 합니다.
+        // 현재는 팔로우 토글을 구현하지 않았습니다.
     }
 
     override fun onDestroy() {

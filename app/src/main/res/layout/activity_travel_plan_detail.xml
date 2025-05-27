@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- 뒤로가기 버튼 - 76dp 아래 위치 -->
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_back_black"
+        android:contentDescription="뒤로가기" />
+        
+    <!-- 팔로우 토글 -->
+    <LinearLayout
+        android:id="@+id/followLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/backButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/followText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="팔로우 중"
+            android:textColor="@color/blue"
+            android:textSize="14sp" />
+
+        <Switch
+            android:id="@+id/followToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track_selector" />
+    </LinearLayout>
+    
+    <!-- 구분선 -->
+    <View
+        android:id="@+id/dividerLine"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/backButton"
+        android:layout_marginTop="16dp"
+        android:background="#F2F5FC" />
+
+    <!-- 여행 계획 상세 영역 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/dividerLine"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+        
+        <!-- Day 탭 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="16dp">
+
+            <!-- DAY 01 탭 -->
+            <LinearLayout
+                android:id="@+id/dayOneTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/dayOneText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DAY 01"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#7590F0" />
+
+                <View
+                    android:id="@+id/dayOneIndicator"
+                    android:layout_width="60dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#7590F0" />
+            </LinearLayout>
+
+            <!-- DAY 02 탭 -->
+            <LinearLayout
+                android:id="@+id/dayTwoTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/dayTwoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DAY 02"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#9E9E9E" />
+
+                <View
+                    android:id="@+id/dayTwoIndicator"
+                    android:layout_width="60dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@android:color/transparent" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 구분선 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EEEEEE" />
+
+        <!-- 일정 목록 (RecyclerView로 변경) -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/scheduleRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+    </LinearLayout>
+</RelativeLayout> 

@@ -1,5 +1,6 @@
 package com.example.travelonna.api
 
+import com.example.travelonna.model.LogDetailResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -36,7 +37,10 @@ interface ApiService {
     fun createGroupUrl(@Body request: GroupUrlRequest): Call<GroupUrlResponse>
 
     @GET("api/v1/plans")
-    fun getPlans(@Header("Authorization") authorization: String): Call<PlanListResponse>
+    fun getPlans(): Call<PlanListResponse>
+    
+    @GET("api/v1/logs/{logId}")
+    fun getLogDetail(@Path("logId") logId: Int): Call<LogDetailResponse>
     
     @GET("api/v1/groups/my")
     fun getMyGroups(): Call<List<GroupInfoResponse>>

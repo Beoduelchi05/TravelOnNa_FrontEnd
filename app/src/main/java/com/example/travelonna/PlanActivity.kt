@@ -285,10 +285,7 @@ class PlanActivity : AppCompatActivity() {
     
     // 내 일정 목록 가져오기
     private fun fetchPlans() {
-        val token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZW9kdWVsY2hpMDVAZ21haWwuY29tIiwidXNlcl9pZCI6MTIsImlhdCI6MTc0NDY5MzM3OSwiZXhwIjoxNzQ0Njk2OTc5fQ.RehACK7RKot0bx0ZcF1MUUfPZ4OwxQaXkjZhhyqnX30"
-        
-        val authorization = "Bearer $token"
-        RetrofitClient.apiService.getPlans(authorization).enqueue(object : Callback<PlanListResponse> {
+        RetrofitClient.apiService.getPlans().enqueue(object : Callback<PlanListResponse> {
             override fun onResponse(call: Call<PlanListResponse>, response: Response<PlanListResponse>) {
                 if (response.isSuccessful) {
                     val planResponse = response.body()

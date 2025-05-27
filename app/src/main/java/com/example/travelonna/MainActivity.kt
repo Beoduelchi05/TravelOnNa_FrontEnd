@@ -53,5 +53,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LogActivity::class.java)
             startActivity(intent)
         }
+        
+        findViewById<Button>(R.id.searchButton)?.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
