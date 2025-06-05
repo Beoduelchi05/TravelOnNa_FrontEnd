@@ -86,4 +86,24 @@ interface ApiService {
     
     @GET("api/v1/follows/count/followings/{profileId}")
     fun getFollowingsCount(@Path("profileId") profileId: Int): Call<FollowCountResponse>
+    
+    // Search endpoint
+    @GET("api/v1/search")
+    fun search(@Query("keyword") keyword: String): Call<SearchResponse>
+    
+    // Recommendation endpoints
+    @POST("api/v1/recommendations")
+    fun getRecommendations(@Body request: RecommendationRequest): Call<RecommendationApiResponse>
+    
+    @GET("api/v1/recommendations/count")
+    fun getRecommendationCount(
+        @Query("userId") userId: Int,
+        @Query("type") type: String = "log"
+    ): Call<RecommendationCountResponse>
+    
+    @GET("api/v1/recommendations/exists")
+    fun checkRecommendationExists(
+        @Query("userId") userId: Int,
+        @Query("type") type: String = "log"
+    ): Call<RecommendationExistsResponse>
 } 
