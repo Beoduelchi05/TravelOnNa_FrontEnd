@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:2:1-122:12
-INJECTED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:2:1-122:12
-INJECTED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:2:1-122:12
-INJECTED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:2:1-122:12
+ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:2:1-126:12
+INJECTED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:2:1-126:12
+INJECTED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:2:1-126:12
+INJECTED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:2:1-126:12
 MERGED from [androidx.databinding:viewbinding:8.1.0] C:\Users\aqwo6\.gradle\caches\transforms-3\6b01d527d9f4c2cca46e9d9b19d7e8dd\transformed\viewbinding-8.1.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\aqwo6\.gradle\caches\transforms-3\063015173dfe85b7ffd3260626a46116\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\aqwo6\.gradle\caches\transforms-3\24888596994c39c74949fe0400b4a051\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -119,8 +119,8 @@ ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManif
 	android:name
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:11:22-73
 application
-ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:13:5-120:19
-INJECTED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:13:5-120:19
+ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:13:5-124:19
+INJECTED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:13:5-124:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\aqwo6\.gradle\caches\transforms-3\063015173dfe85b7ffd3260626a46116\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\aqwo6\.gradle\caches\transforms-3\063015173dfe85b7ffd3260626a46116\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\aqwo6\.gradle\caches\transforms-3\24888596994c39c74949fe0400b4a051\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -257,80 +257,86 @@ ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManif
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:70:13-37
 	android:name
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:69:13-58
-activity#com.example.travelonna.LogActivity
+activity#com.example.travelonna.ui.map.MyMapActivity
 ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:72:9-74:40
 	android:exported
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:74:13-37
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:73:13-40
-activity#com.example.travelonna.TravelDetailActivity
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:73:13-49
+activity#com.example.travelonna.LogActivity
 ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:76:9-78:40
 	android:exported
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:78:13-37
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:77:13-49
-activity#com.example.travelonna.PlaceMemoryActivity
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:77:13-40
+activity#com.example.travelonna.TravelDetailActivity
 ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:80:9-82:40
 	android:exported
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:82:13-37
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:81:13-48
-activity#com.example.travelonna.UploadCompleteActivity
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:81:13-49
+activity#com.example.travelonna.PlaceMemoryActivity
 ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:84:9-86:40
 	android:exported
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:86:13-37
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:85:13-51
-activity#com.example.travelonna.ScheduleCompleteActivity
-ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:88:9-91:66
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:85:13-48
+activity#com.example.travelonna.UploadCompleteActivity
+ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:88:9-90:40
 	android:exported
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:90:13-37
-	android:theme
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:91:13-63
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:89:13-53
-activity#com.example.travelonna.ProfileCreateActivity
-ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:93:9-95:40
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:89:13-51
+activity#com.example.travelonna.ScheduleCompleteActivity
+ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:92:9-95:66
 	android:exported
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:95:13-37
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:94:13-37
+	android:theme
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:95:13-63
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:94:13-50
-activity#com.example.travelonna.ProfileActivity
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:93:13-53
+activity#com.example.travelonna.ProfileCreateActivity
 ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:97:9-99:40
 	android:exported
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:99:13-37
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:98:13-44
-activity#com.example.travelonna.FollowListActivity
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:98:13-50
+activity#com.example.travelonna.ProfileActivity
 ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:101:9-103:40
 	android:exported
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:103:13-37
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:102:13-47
-activity#com.example.travelonna.SearchActivity
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:102:13-44
+activity#com.example.travelonna.FollowListActivity
 ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:105:9-107:40
 	android:exported
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:107:13-37
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:106:13-43
-activity#com.example.travelonna.PostDetailActivity
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:106:13-47
+activity#com.example.travelonna.SearchActivity
 ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:109:9-111:40
 	android:exported
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:111:13-37
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:110:13-47
-activity#com.example.travelonna.TravelPlanDetailActivity
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:110:13-43
+activity#com.example.travelonna.PostDetailActivity
 ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:113:9-115:40
 	android:exported
 		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:115:13-37
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:114:13-53
-meta-data#com.google.android.geo.API_KEY
-ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:117:9-119:71
-	android:value
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:119:13-68
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:114:13-47
+activity#com.example.travelonna.TravelPlanDetailActivity
+ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:117:9-119:40
+	android:exported
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:119:13-37
 	android:name
-		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:118:13-58
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:118:13-53
+meta-data#com.google.android.geo.API_KEY
+ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:121:9-123:71
+	android:value
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:123:13-68
+	android:name
+		ADDED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml:122:13-58
 uses-sdk
 INJECTED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\aqwo6\capstone\TravelOnNa_Frontend\app\src\main\AndroidManifest.xml

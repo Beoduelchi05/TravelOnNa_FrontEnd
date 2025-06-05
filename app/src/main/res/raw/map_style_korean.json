@@ -1,10 +1,10 @@
 [
   {
     "featureType": "all",
-    "elementType": "labels",
+    "elementType": "labels.text",
     "stylers": [
       {
-        "language": "ko"
+        "visibility": "on"
       }
     ]
   }

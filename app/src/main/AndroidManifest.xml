@@ -70,6 +70,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.map.MyMapActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".LogActivity"
             android:exported="false" />
 

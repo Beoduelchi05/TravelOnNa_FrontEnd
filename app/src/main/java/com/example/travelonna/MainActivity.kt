@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.travelonna.api.RetrofitClient
+import com.example.travelonna.ui.map.MyMapActivity
 import android.util.Log
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +42,11 @@ class MainActivity : AppCompatActivity() {
         
         findViewById<Button>(R.id.planButton)?.setOnClickListener {
             val intent = Intent(this, PlanActivity::class.java)
+            startActivity(intent)
+        }
+        
+        findViewById<Button>(R.id.myMapButton)?.setOnClickListener {
+            val intent = Intent(this, MyMapActivity::class.java)
             startActivity(intent)
         }
         
