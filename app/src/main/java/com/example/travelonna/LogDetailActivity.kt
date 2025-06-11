@@ -160,7 +160,7 @@ class LogDetailActivity : AppCompatActivity() {
         userNameTextView.text = logDetail.userName
         
         // 프로필 이미지 로드
-        if (logDetail.userProfileImage.isNotEmpty()) {
+        if (!logDetail.userProfileImage.isNullOrEmpty()) {
             Glide.with(this)
                 .load(logDetail.userProfileImage)
                 .circleCrop()
@@ -168,8 +168,7 @@ class LogDetailActivity : AppCompatActivity() {
         }
         
         // 생성 날짜 표시
-        val formattedDate = android.text.format.DateFormat.format("yyyy.MM.dd", logDetail.createdAt)
-        createdAtTextView.text = formattedDate.toString()
+        createdAtTextView.text = logDetail.createdAt ?: "날짜 정보 없음"
         
         // 코멘트 표시
         commentTextView.text = logDetail.comment

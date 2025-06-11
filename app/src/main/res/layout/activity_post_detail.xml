@@ -64,10 +64,11 @@
         android:adjustViewBounds="true" />
 
     <!-- 포스트 정보 영역 -->
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/postImage"
+        android:layout_above="@+id/commentInputLayout"
         android:fillViewport="true">
 
         <LinearLayout
@@ -180,15 +181,32 @@
                 android:background="#E0E0E0" />
 
             <!-- 댓글 헤더 -->
-            <TextView
-                android:id="@+id/commentHeader"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="댓글"
-                android:textColor="#1A1A1A"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                
+                <TextView
+                    android:id="@+id/commentHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="댓글"
+                    android:textColor="#1A1A1A"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+                
+                <ImageView
+                    android:id="@+id/refreshButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_popup_sync"
+                    android:padding="4dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="댓글 새로고침" />
+            </LinearLayout>
 
             <!-- 댓글 목록 -->
             <androidx.recyclerview.widget.RecyclerView
@@ -196,7 +214,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:nestedScrollingEnabled="false" />
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never" />
 
             <!-- 댓글이 없을 때 표시할 텍스트 -->
             <TextView
@@ -211,10 +230,11 @@
                 android:textSize="14sp"
                 android:visibility="gone" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <!-- 댓글 입력 영역 -->
     <LinearLayout
+        android:id="@+id/commentInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

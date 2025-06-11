@@ -27,13 +27,16 @@ class HomeActivity : AppCompatActivity() {
     
     companion object {
         private const val TAG = "HomeActivity"
+        private const val PAGE_SIZE = 50
+        const val REQUEST_POST_DETAIL = 1001 // PostDetailActivity 요청 코드 (public으로 변경)
     }
     
     private lateinit var recommendationAdapter: RecommendationAdapter
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var recommendationTitle: TextView
-    
+    private lateinit var layoutManager: LinearLayoutManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -57,6 +60,34 @@ class HomeActivity : AppCompatActivity() {
         loadRecommendationCount()
     }
     
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "HomeActivity resumed, refreshing recommendations")
+        // 다른 액티비티에서 돌아왔을 때 추천 데이터 새로고침
+        checkRecommendationsExist()
+        loadRecommendationCount()
+    }
+    
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        
+        if (requestCode == REQUEST_POST_DETAIL && resultCode == RESULT_OK) {
+            val shouldRefresh = data?.getBooleanExtra(PostDetailActivity.RESULT_REFRESH_NEEDED, false) ?: false
+            if (shouldRefresh) {
+                Log.d(TAG, "PostDetailActivity returned with refresh request")
+                // 추천 데이터 새로고침
+                refreshRecommendations()
+            }
+        }
+    }
+    
+    private fun refreshRecommendations() {
+        Log.d(TAG, "Refreshing recommendations...")
+        // 추천 데이터 다시 로드
+        checkRecommendationsExist()
+        loadRecommendationCount()
+    }
+    
     private fun initViews() {
         recyclerView = findViewById(R.id.postsRecyclerView)
         recommendationTitle = findViewById(R.id.recommendationTitle)
@@ -67,11 +98,12 @@ class HomeActivity : AppCompatActivity() {
     }
     
     private fun setupRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
         
         // 초기에는 빈 어댑터로 설정
-        recommendationAdapter = RecommendationAdapter(emptyList())
+        recommendationAdapter = RecommendationAdapter()
         recyclerView.adapter = recommendationAdapter
     }
     
@@ -145,7 +177,7 @@ class HomeActivity : AppCompatActivity() {
         val request = RecommendationRequest(
             userId = userId,
             recType = "log",
-            recLimit = 20
+            recLimit = PAGE_SIZE
         )
         
         RetrofitClient.apiService.getRecommendations(request).enqueue(object : Callback<RecommendationApiResponse> {
@@ -158,6 +190,8 @@ class HomeActivity : AppCompatActivity() {
                     if (apiResponse.success && apiResponse.data != null) {
                         // 성공적으로 추천 데이터를 받은 경우
                         Log.d(TAG, "Recommendations loaded: ${apiResponse.data.recommendations.size} items")
+                        
+                        // 데이터 업데이트
                         recommendationAdapter.updateData(apiResponse.data.recommendations)
                         
                         if (apiResponse.data.recommendations.isEmpty()) {
@@ -246,12 +280,8 @@ class HomeActivity : AppCompatActivity() {
     }
     
     private fun updateRecommendationTitle(count: Int?) {
-        val title = if (count != null) {
-            "추천 게시물 ($count)"
-        } else {
-            "추천 게시물"
-        }
-        recommendationTitle.text = title
+        // 숫자 표시 없이 항상 "추천 게시물"만 표시
+        recommendationTitle.text = "추천 게시물"
     }
     
     private fun handleApiError(httpCode: Int, message: String) {

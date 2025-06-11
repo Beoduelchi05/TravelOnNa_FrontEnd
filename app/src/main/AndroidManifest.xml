@@ -74,6 +74,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".UserLogMapActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".LogActivity"
             android:exported="false" />
 

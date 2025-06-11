@@ -106,4 +106,57 @@ interface ApiService {
         @Query("userId") userId: Int,
         @Query("type") type: String = "log"
     ): Call<RecommendationExistsResponse>
+    
+    // User logs endpoints
+    @GET("api/v1/logs/users/{userId}")
+    fun getUserLogs(@Path("userId") userId: Int): Call<UserLogsResponse>
+    
+    @GET("api/v1/plans/{planId}/places/view")
+    fun getPlanPlaces(@Path("planId") planId: Int): Call<PlanPlacesResponse>
+    
+    // Like toggle endpoint
+    @POST("api/v1/logs/{logId}/likes")
+    fun toggleLogLike(@Path("logId") logId: Int): Call<LikeToggleResponse>
+    
+    // Log detail endpoint 
+    @GET("api/v1/logs/{logId}")
+    fun getLogDetailFromApi(@Path("logId") logId: Int): Call<LogDetailApiResponse>
+    
+    // Comments endpoint
+    @GET("api/logs/{logId}/comments")
+    fun getLogComments(@Path("logId") logId: Int): Call<CommentsResponse>
+    
+    // Create comment endpoint
+    @POST("api/logs/{logId}/comments")
+    fun createComment(
+        @Path("logId") logId: Int,
+        @Body request: CreateCommentRequest
+    ): Call<CommentData>
+    
+    // Update comment endpoint
+    @PUT("api/logs/comments/{commentId}")
+    fun updateComment(
+        @Path("commentId") commentId: Int,
+        @Body request: CreateCommentRequest
+    ): Call<UpdateCommentResponse>
+    
+    // Delete comment endpoint
+    @DELETE("api/logs/comments/{commentId}")
+    fun deleteComment(
+        @Path("commentId") commentId: Int
+    ): Call<DeleteCommentResponse>
+    
+    // Follow endpoints
+    @POST("api/v1/follows")
+    fun followUser(@Body request: FollowRequest): Call<FollowResponse>
+    
+    @DELETE("api/v1/follows/{toUser}")
+    fun unfollowUser(@Path("toUser") toUser: Int): Call<UnfollowResponse>
+    
+    @GET("api/v1/follows/status/{toUser}")
+    fun getFollowStatus(@Path("toUser") toUser: Int): Call<FollowStatusResponse>
+    
+    // 일정별 여행기록 목록 조회 API 추가
+    @GET("api/v1/logs/plans/{planId}")
+    fun getLogsByPlan(@Path("planId") planId: Int): Call<LogsByPlanResponse>
 } 

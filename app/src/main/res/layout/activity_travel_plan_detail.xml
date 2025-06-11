@@ -62,62 +62,23 @@
         android:orientation="vertical">
         
         <!-- Day 탭 -->
-        <LinearLayout
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="16dp">
-
-            <!-- DAY 01 탭 -->
+            android:scrollbars="none">
+            
             <LinearLayout
-                android:id="@+id/dayOneTab"
+                android:id="@+id/dayTabContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/dayOneText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DAY 01"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#7590F0" />
-
-                <View
-                    android:id="@+id/dayOneIndicator"
-                    android:layout_width="60dp"
-                    android:layout_height="3dp"
-                    android:layout_marginTop="4dp"
-                    android:background="#7590F0" />
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="16dp">
+                
+                <!-- 동적으로 생성되는 DAY 탭들이 여기에 추가됩니다 -->
+                
             </LinearLayout>
-
-            <!-- DAY 02 탭 -->
-            <LinearLayout
-                android:id="@+id/dayTwoTab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/dayTwoText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DAY 02"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#9E9E9E" />
-
-                <View
-                    android:id="@+id/dayTwoIndicator"
-                    android:layout_width="60dp"
-                    android:layout_height="3dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@android:color/transparent" />
-            </LinearLayout>
-        </LinearLayout>
+        </HorizontalScrollView>
 
         <!-- 구분선 -->
         <View

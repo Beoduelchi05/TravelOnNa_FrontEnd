@@ -1,7 +1,5 @@
 package com.example.travelonna.model
 
-import java.util.Date
-
 data class LogDetailResponse(
     val success: Boolean,
     val message: String,
@@ -12,9 +10,9 @@ data class LogDetail(
     val logId: Int,
     val userId: Int,
     val userName: String,
-    val userProfileImage: String,
+    val userProfileImage: String?,
     val comment: String,
-    val createdAt: Date,
+    val createdAt: String,
     val isPublic: Boolean,
     val imageUrls: List<String>,
     val likeCount: Int,

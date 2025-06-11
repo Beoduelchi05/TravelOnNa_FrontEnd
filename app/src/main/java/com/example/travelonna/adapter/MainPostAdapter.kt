@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelonna.PostDetailActivity
 import com.example.travelonna.R
 import com.example.travelonna.model.Post
 import com.example.travelonna.view.CustomToggleButton
 import com.example.travelonna.util.PostManager
+import com.example.travelonna.HomeActivity
 
 class MainPostAdapter(private var posts: List<Post>) : 
     RecyclerView.Adapter<MainPostAdapter.MainPostViewHolder>() {
@@ -38,8 +40,21 @@ class MainPostAdapter(private var posts: List<Post>) :
     override fun onBindViewHolder(holder: MainPostViewHolder, position: Int) {
         val post = posts[position]
         
-        // 포스트 이미지 설정
-        holder.postImage.setImageResource(post.imageResource)
+        // 포스트 이미지 설정 - 이미지가 있을 경우에만 표시
+        if (post.hasImage) {
+            holder.postImage.visibility = View.VISIBLE
+            if (post.imageUrl != null && post.imageUrl.isNotEmpty()) {
+                // 실제 이미지 URL이 있는 경우 Glide 등을 사용하여 로드
+                // TODO: Glide를 사용한 이미지 로딩 구현
+                holder.postImage.setImageResource(post.imageResource)
+            } else {
+                // 기본 이미지 리소스 사용
+                holder.postImage.setImageResource(post.imageResource)
+            }
+        } else {
+            // 이미지가 없는 경우 이미지뷰 숨김
+            holder.postImage.visibility = View.GONE
+        }
         
         // 사용자 이름 설정
         holder.userName.text = post.userName
@@ -74,7 +89,20 @@ class MainPostAdapter(private var posts: List<Post>) :
             val intent = Intent(context, PostDetailActivity::class.java).apply {
                 putExtra(PostDetailActivity.EXTRA_POST_ID, post.id)
             }
-            context.startActivity(intent)
+            
+            // Activity 컨텍스트인 경우 startActivityForResult 사용
+            when (context) {
+                is HomeActivity -> {
+                    context.startActivityForResult(intent, HomeActivity.REQUEST_POST_DETAIL)
+                }
+                is AppCompatActivity -> {
+                    // 다른 AppCompatActivity인 경우 일반 startActivity 사용
+                    context.startActivity(intent)
+                }
+                else -> {
+                    context.startActivity(intent)
+                }
+            }
         }
         
         // 팔로우 토글 클릭 이벤트
@@ -88,12 +116,28 @@ class MainPostAdapter(private var posts: List<Post>) :
             val intent = Intent(context, PostDetailActivity::class.java).apply {
                 putExtra(PostDetailActivity.EXTRA_POST_ID, post.id)
             }
-            context.startActivity(intent)
+            
+            // Activity 컨텍스트인 경우 startActivityForResult 사용
+            when (context) {
+                is HomeActivity -> {
+                    context.startActivityForResult(intent, HomeActivity.REQUEST_POST_DETAIL)
+                }
+                is AppCompatActivity -> {
+                    // 다른 AppCompatActivity인 경우 일반 startActivity 사용
+                    context.startActivity(intent)
+                }
+                else -> {
+                    context.startActivity(intent)
+                }
+            }
         }
         
         // 게시물의 여러 영역에 클릭 리스너 설정
         holder.itemView.setOnClickListener(postClickListener)
-        holder.postImage.setOnClickListener(postClickListener)
+        // 이미지가 있을 경우에만 이미지 클릭 리스너 설정
+        if (post.hasImage) {
+            holder.postImage.setOnClickListener(postClickListener)
+        }
         holder.userName.setOnClickListener(postClickListener)
         holder.description.setOnClickListener(postClickListener)
         holder.date.setOnClickListener(postClickListener)

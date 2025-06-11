@@ -42,15 +42,16 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:textSize="13sp"
-            android:text="팔로우 중"
+            android:textColor="@color/gray_text"
+            android:text="팔로우"
             app:layout_constraintEnd_toStartOf="@+id/followToggle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <com.example.travelonna.view.CustomToggleButton
             android:id="@+id/followToggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="56dp"
+            android:layout_height="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
